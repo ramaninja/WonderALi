@@ -7,8 +7,8 @@ services:
     image: "postgres:13.1-alpine"
     container_name: pg-service
     volumes: 
-      #- ./db_volume:/var/lib/postgresql/data
-      - ./db_volume/script:/docker-entrypoint-initdb.d
+      - ./database_volume:/var/lib/postgresql/data
+      - ./database/script:/docker-entrypoint-initdb.d
     ports: 
       - 5432:5432
     environment: 
