@@ -1,0 +1,68 @@
+<div class="InvisibleBackgroundContainer"> 
+<!-- <img src="/assets/img/galaxy.jpg" width="100%" alt="image" /> -->
+</div>
+    
+
+<div style="padding-top: 0%;">
+    <div class="NaviguationBar"> 
+
+        <!-- Category -->
+        <div style="display: inline-block; height: 100%;" class="row"> 
+          <button class="action_button_style"> Categorie </button> 
+        </div>
+      
+       <div style="display: inline-block; height: 100%;" class="row"> 
+          <button class="action_button_sub_title_style" (click)="Search('informatique')"> Informatique </button> 
+        </div>
+      
+       <div style="display: inline-block; height: 100%;" class="row"> 
+          <button class="action_button_sub_title_style" (click)="Search('Jeux vidéo')"> Jeux vidéo </button> 
+        </div>
+      
+        <div style="display: inline-block; height: 100%;" class="row"> 
+          <button class="action_button_sub_title_style" (click)="Search('Maison')"> Maison </button> 
+        </div>
+      
+        <div style="display: inline-block; height: 100%;" class="row"> 
+          <button class="action_button_sub_title_style" (click)="Search('Jouets')"> Jouets </button> 
+        </div>
+      
+        <div style="display: inline-block; height: 100%;" class="row"> 
+          <button class="action_button_sub_title_style" (click)="Search('Bricolage')"> Bricolage </button> 
+        </div>    
+    
+       <!-- Compte --> 
+        <div style="display: inline-block; height: 100%; float: right;" class="row">
+          <button class="action_button_style" (click)="OuvrirCompte()"> Compte </button> 
+        </div> 
+
+
+        <!-- Panier -->
+          <div style="display: inline-block; height: 100%;  float: right;" class="row">
+            <button class="action_button_style"  (click)="OuvrirPanier()"> Panier </button> 
+        </div> 
+
+
+        <!-- Barre de recherche-->
+        <div style="display: inline-block; margin: 5px; float: right;" class="row">
+          <div style="display: inline-block; margin: 5px;" class="row">     <p> Rechercher </p> </div>
+          <div style="display: inline-block; margin: 5px;" class="row"> 
+                <input style="vertical-align:middle; max-width: 600px;" [(ngModel)]="FilterText" type="text" placeholder="Une envie ?" />
+                <button class="searchButtonStyle" (click)="DoSearch()"><img style="height: 22px;" src="/assets/img/search_black.png"/> </button> 
+          </div>
+        </div>
+    </div>
+              
+    <div *ngIf="!IsInAccount && !IsDescription"> 
+        <app-commerce [List]=List></app-commerce>
+    </div>
+
+    <div *ngIf="IsInAccount">
+        <app-compte (articleClicked)='OpenDescription($event)'></app-compte>
+    </div>
+
+    <div *ngIf="IsDescription">
+        <app-descriptif></app-descriptif>
+    </div>
+
+</div>

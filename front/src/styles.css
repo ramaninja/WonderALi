@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+
+h1 {
+    color: rgb(47, 47, 47);
+    font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 14;
+}
+
+p {
+    color: rgb(47, 47, 47);
+    font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+}
+
+p.secondStyle{
+    font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    color: rgb(34, 34, 36);
+}
+
+p.highlightedStyle{
+    padding:4px;
+    color: rgb(237, 163, 107);
+    font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight: 600;
+}
+
+
+p.highlightedStyle:hover{
+    padding:4px;
+    color: rgb(237, 163, 107);
+    font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+
+
+input {
+    height: 28px;
+    border-color: transparent;
+}
+
+img {
+    margin: 4px;
+}
+
+ 
+div.preview_card_style {
+   padding: 2px;
+   background-color: rgb(245, 245, 245); 
+   height: 180px;
+   width: 200px;
+   margin: 5px;
+   border-radius: 5px;
+   display: inline-block;
+}
+
+div.preview_card_style:hover {
+    background-color: rgb(238, 238, 238); 
+}
+div.preview_card_style:active {
+    background-color: rgb(235, 235, 235);  
+}
+
+div.ContentPresenter{
+    overflow-x: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-color: black;
+    border-width: 1px;
+    background-color: rgb(255, 254, 254);
+    position: relative;
+    z-index:1;
+}
+
+
+button.action_button_style{
+    color: whitesmoke;
+    font-size: 16px;
+    margin-right: 5px;
+    font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    border-color: transparent;
+    outline: none;
+    background-color: rgb(55, 126, 220);
+    height: 100%;   
+}
+
+button.action_button_style:hover{
+    background-color: rgb(92, 149, 223);;
+}
+
+button.action_button_style:hover{
+    background-color: rgb(83, 142, 219);;
+}
+div.BackgroundContainer {
+    background-color: whitesmoke;
+    padding: 5dp;
+}
+
+div.InvisibleBackgroundContainer{
+    position: absolute;
+    z-index:0;
+    padding-left: 0%;
+    padding-right: 0%;
+    background-color: transparent;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100%; 
+    width: 100%;
+    background-size: cover;
+}
+

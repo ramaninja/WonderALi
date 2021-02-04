@@ -1,0 +1,61 @@
+div.NaviguationBar{
+    border-radius: 5px;
+    background-color: rgb(55, 126, 220);
+    padding: 2px;
+    height: 70px;
+    position: relative;
+    z-index:2;
+}
+
+
+button.searchButtonStyle{
+    vertical-align:middle;
+     height: 36px;
+      background-color:
+       rgba(245, 245, 245, 0.186);
+        border-color: transparent;
+        outline: none;
+}
+
+button.searchButtonStyle:hover{
+    vertical-align:middle;
+     height: 36px;
+      background-color:
+      rgba(245, 245, 245, 0.09);
+}
+
+button.searchButtonStyle:active{
+    vertical-align:middle;
+     height: 36px;
+      background-color:
+      rgb(75, 136, 216);
+}
+
+
+
+button.action_button_sub_title_style{
+    color: rgb(228, 229, 255);
+    font-size: 14px;
+    margin-right: 5px;
+    border-radius: 0;
+    font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    border-color: transparent;
+    outline: none;
+    background-color: rgb(55, 126, 220);
+    height: 100%;
+}
+
+button.action_button_sub_title_style:hover{
+    border-bottom-color: rgb(207, 218, 230);
+    border-style: solid;
+    border-radius: 0%;
+    border-bottom-width: 5px;
+    transition: border-bottom-width 0.1s;
+}
+
+button.action_button_sub_title_style:active{
+    border-bottom-color: rgb(126, 169, 212);
+    border-style: solid;
+    border-radius: 0%;
+    border-bottom-width: 5px;
+}

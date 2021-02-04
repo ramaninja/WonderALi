@@ -1,0 +1,14 @@
+<!-- Content -->
+<div class="ContentPresenter">   
+   <div>
+  <p class="secondStyle"> Résultats de votre recherche : </p>
+  </div>  
+  <app-preview-article-card
+    *ngFor="let item of List"
+    [Id]=item.Id
+    [Name]=item.Name
+    [Price]=item.Price
+    [Description]=item.Description
+    >
+  </app-preview-article-card>
+</div>
