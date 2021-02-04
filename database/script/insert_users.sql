@@ -9,3 +9,7 @@ INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (2, 2, 
 INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (3, 3, 12);
 INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (4, 4, 13);
 INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (5, 5, 14);
+
+INSERT INTO public."Products"("Product_Id", "Price", "Name", "Category") VALUES (1, '5.99', 'Piment', 'Aliment');
+INSERT INTO public."Products"("Product_Id", "Price", "Name", "Category") VALUES (2, '6.99', 'PQ', 'Soin');
+INSERT INTO public."Products"("Product_Id", "Price", "Name", "Category") VALUES (3, '55.99', 'Poitrine de Porc', 'Aliment');

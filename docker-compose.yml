@@ -39,15 +39,15 @@ services:
       - pg-service
 
 # create PRODUCT SERVICE
-  # products-service:
-  #   build: ./back/Products
-  #   container_name: products-service
-  #   volumes:
-  #     - ./back/Products:/usr/src/app
-  #   ports:
-  #     - 5003:80
-  #   depends_on: 
-  #     - pg-service
+  products-service:
+    build: ./back/Products
+    container_name: products-service
+    volumes:
+      - ./back/Products:/usr/src/app
+    ports:
+      - 5003:80
+    depends_on: 
+      - pg-service
 
 # create SEARCH SERVICE
   # search-service:
