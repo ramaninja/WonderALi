@@ -17,15 +17,15 @@ services:
       - POSTGRES_PASSWORD=postgres
 
 # create AUTHENTIFICATION SERVICE
-  # authent-service:
-  #   build: ./back-end
-  #   container_name: authent-service
-  #   volumes:
-  #     - ./back-end:/usr/src/app
-  #   ports:
-  #     - 5001:80
-  #   depends_on: 
-  #     - pg-service
+  authent-service:
+    build: ./back-end
+    container_name: authent-service
+    volumes:
+      - ./back-end:/usr/src/app
+    ports:
+      - 5001:80
+    depends_on: 
+      - pg-service
 
 # create BASKET SERVICE
   basket-service:
@@ -39,26 +39,26 @@ services:
       - pg-service
 
 # create PRODUCT SERVICE
-  # products-service:
-  #   build: ./back/Products
-  #   container_name: products-service
-  #   volumes:
-  #     - ./back/Products:/usr/src/app
-  #   ports:
-  #     - 5003:80
-  #   depends_on: 
-  #     - pg-service
+  products-service:
+    build: ./back/Products
+    container_name: products-service
+    volumes:
+      - ./back/Products:/usr/src/app
+    ports:
+      - 5003:80
+    depends_on: 
+      - pg-service
 
 # create SEARCH SERVICE
-  # search-service:
-  #   build: ./back/Search
-  #   container_name: search-service
-  #   volumes:
-  #     - ./back/Search:/usr/src/app
-  #   ports:
-  #     - 5004:80
-  #   depends_on: 
-  #     - pg-service
+  search-service:
+    build: ./back/Search
+    container_name: search-service
+    volumes:
+      - ./back/Search:/usr/src/app
+    ports:
+      - 5004:80
+    depends_on: 
+      - pg-service
 
 # create FRONT SERVICE
   front-service:
