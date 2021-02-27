@@ -21,7 +21,7 @@ export class AppComponent {
   IsAccountOpen:flag = new flag(false);  
   IsDescriptionOpen:flag =new flag(false);  
   IsCommerceOpen:flag = new flag(false);  
-  IsBaketOpen:flag = new flag(false); 
+  IsBasketOpen:flag = new flag(false); 
 
 
   Forms:Map<formsEnum,flag> = new Map<formsEnum,flag>();
@@ -42,6 +42,11 @@ export class AppComponent {
       this.Forms.set(formsEnum.Commerce,this.IsCommerceOpen);
       this.Forms.set(formsEnum.Account,this.IsAccountOpen);
       this.Forms.set(formsEnum.Description,this.IsDescriptionOpen);
+      this.Forms.set(formsEnum.Basket,this.IsBasketOpen);
+
+    /* Test qui remplit la page automatiquement pour pouvoir tester les différentes pages sans avoir à taper xbox dans la bar de recherche : à commenter*/
+      this.FilterText="xbox";
+      this.DoSearch();
     }
 
   OuvrirCompte():void {
@@ -51,6 +56,8 @@ export class AppComponent {
 
   OuvrirPanier():void {
     console.log("Ouvrir le panier");
+    this.ChangeForm(formsEnum.Basket);
+    console.log(this.List.length);
   }
 
   // méthode pour changer de form.
@@ -74,10 +81,7 @@ export class AppComponent {
     this.ChangeForm(formsEnum.Commerce)
   
     console.log("Commerce open ? " + this.IsCommerceOpen.state);
-
-    // this.IsAccountOpen = false; // todo faire avec une méthode qui toggle bien tous booleans etc..
-    // this.IsDescriptionOpen = false;
-
+    
     console.log("FilterText : " + this.FilterText);
     if( this.FilterText != "" &&  this.FilterText != "xbox"){ // enlever xbox (c'est pour la démo)
       this.Search(this.FilterText);

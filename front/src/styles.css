@@ -3,7 +3,7 @@
 h1 {
     color: rgb(47, 47, 47);
     font-family: 'nunito', 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
-    font-size: 14;
+    font-size: 16px;
 }
 
 p {
@@ -108,4 +108,47 @@ div.ContentBackgroundContainer {
     width: 80%;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+
+button.deleteButton{
+    background-color: rgb(206, 54, 54);
+    color: white;
+    margin: 20px;
+    margin-right: 40px;
+    height: 50px;
+    border-width: 0;
+    width: 150;
+    outline-style: none;
+}
+
+button.deleteButton:hover{
+    background-color: rgb(204, 65, 65);
+    color: white;
+}
+
+button.deleteButton:active{
+    background-color: rgb(201, 76, 76);
+    color: white;
+}
+
+
+button.PossitiveButton{
+    background-color: rgb(45, 195, 45);
+    color: white;
+    z-index: 20;
+    outline-style: none;
+    border-radius: 2;
+    border-width: 0;
+    height: 50px;
+    width: 100px; 
+    vertical-align: center;
+}
+
+button.PossitiveButton:hover{
+    background-color: rgb(83, 209, 83);
+}
+
+button.PossitiveButton:active{
+    background-color: rgb(101, 223, 101);
 }

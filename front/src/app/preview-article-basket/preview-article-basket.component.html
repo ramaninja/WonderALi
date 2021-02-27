@@ -1,0 +1,17 @@
+<div class="preview_article_basket_style">    
+    <div style="display: inline-block;"> 
+        <h1>{{product.Name}}</h1>
+        <img src="/assets/img/xbox-series-x.jpeg" alt="image" width="200px" height="150px margin=5px" /> <!-- todo -->
+    </div> <!-- Binding controller vers view -->
+
+    <div style="display: inline-block; vertical-align: top; margin-left: 5px;">
+        <p> Prix : {{product.Price}} $</p>
+
+        <p class="descParagraph" >
+            Description du produit : {{product.Description}}
+        </p>
+    </div>       
+    <div style="display: inline-block; float:right; clear:right; vertical-align: center; margin-left: 5px; bottom: 0;">
+        <button class="deleteButton" (click)="DeleteFromBasket()"> Supprimer l'article </button>
+    </div> 
+</div>
