@@ -1,15 +1,15 @@
-INSERT INTO public."Users"("User_Id","Name", "Password") VALUES (1, 'Marcel', 'PIGNOUL');
-INSERT INTO public."Users"("User_Id","Name", "Password") VALUES (2, 'Jean', 'DUJARDIN');
-INSERT INTO public."Users"("User_Id","Name", "Password") VALUES (3, 'John', 'DOE');
-INSERT INTO public."Users"("User_Id","Name", "Password") VALUES (4, 'Jimmy', 'BROWN');
-INSERT INTO public."Users"("User_Id","Name", "Password") VALUES (5, 'Fabriste', 'PIERRE');
+INSERT INTO public."Users"("Name", "Password") VALUES ('Marcel', 'PIGNOUL');
+INSERT INTO public."Users"("Name", "Password") VALUES ('Jean', 'DUJARDIN');
+INSERT INTO public."Users"("Name", "Password") VALUES ('John', 'DOE');
+INSERT INTO public."Users"("Name", "Password") VALUES ('Jimmy', 'BROWN');
+INSERT INTO public."Users"("Name", "Password") VALUES ('Fabriste', 'PIERRE');
 
-INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (1, 1, 10);
-INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (2, 2, 11);
-INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (3, 3, 12);
-INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (4, 4, 13);
-INSERT INTO public."Basket"("Basket_Id", "User_Id", "Product_Id") VALUES (5, 5, 14);
+INSERT INTO public."Basket"("User_Id", "Product_Id") VALUES (1, 1);
+INSERT INTO public."Basket"("User_Id", "Product_Id") VALUES (1, 2);
+INSERT INTO public."Basket"("User_Id", "Product_Id") VALUES (2, 3);
+INSERT INTO public."Basket"("User_Id", "Product_Id") VALUES (4, 13);
+INSERT INTO public."Basket"("User_Id", "Product_Id") VALUES (5, 14);
 
-INSERT INTO public."Products"("Product_Id", "Price", "Name", "Category") VALUES (1, '5.99', 'Piment', 'Aliment');
-INSERT INTO public."Products"("Product_Id", "Price", "Name", "Category") VALUES (2, '6.99', 'PQ', 'Soin');
-INSERT INTO public."Products"("Product_Id", "Price", "Name", "Category") VALUES (3, '55.99', 'Poitrine de Porc', 'Aliment');
+INSERT INTO public."Products"("Price", "Name", "Category") VALUES ('5.99', 'Piment', 'Informatique');
+INSERT INTO public."Products"("Price", "Name", "Category") VALUES ('6.99', 'PQ', 'Informatique');
+INSERT INTO public."Products"("Price", "Name", "Category") VALUES ('55.99', 'Poitrine de Porc', 'Informatique');

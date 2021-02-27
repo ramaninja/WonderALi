@@ -15,7 +15,7 @@ export class PreviewArticleCardComponent implements OnInit {
   @Input() public Name:string="";
   @Input() public Price:number=0;
   @Input() public Description:string="";
-  @Output('articleClicked') articleClicked =new EventEmitter<string>();
+  @Output('articleClicked') articleClicked =new EventEmitter<number>();
 
   public id:number= 0;
 
@@ -28,7 +28,7 @@ export class PreviewArticleCardComponent implements OnInit {
 
   public OpenArticle():void {
     console.log("Ouverture de l'article");
-    const id = this.Id.toString();
+    const id = this.Id;
     console.log("id :" + id);
     this.articleClicked.emit(id);
   }

@@ -3,14 +3,16 @@
 export class Product {    
     public Name:string="";
     public Price:number=0;
-    public Id:number=0;
+    public Product_Id:number=0;
+    public Category:string="";
     public Description:string="";
 
-    public constructor(name:string,price:number,id:number,description:string){
-        this.Name = name;
-        this.Price = price;
-        this.Id = id;
+    public constructor(Name:string,Price:number,Product_Id:number,Category:string="", description:string=""){
+        this.Name = Name;
+        this.Price = Price;
+        this.Product_Id = Product_Id;
+        this.Category=""; // todo         
         this.Description = description;
-    }  
+    }    
   }
   

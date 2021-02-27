@@ -1,11 +1,41 @@
-<div class="BackgroundContainer">
-    <h1>
-        Descriptif du produit
-    </h1>
-
-    <p>
-        
-    </p>
+<div *ngIf="isPopupOpen" class="popup">
+    <p> Produit ajouté au panier !</p>
+    <button class="OKButton" (click)="ClosePopup()" > OK </button>
 </div>
+
+<div class="ContentBackgroundContainer">
+        
+        <div>
+            <h1 style="padding-top: 20px; padding-bottom: 5px; background-color: rgb(48, 44, 58); color: white; font-weight: 200; font-style: normal;"> 
+                Descriptif du produit
+            </h1>
+        </div>
+
+        
+        <div style="position: relative">
+                        <div style="display: inline-block;"> 
+                            <h1>{{product.Name}}</h1>
+                            <img src="/assets/img/xbox-series-x.jpeg" alt="image" width="500px" height="300px margin=5px" /> <!-- todo -->
+                        </div> <!-- Binding controller vers view -->
+
+                        <div style="display: inline-block; vertical-align: top; margin-left: 5px;">
+                            <p> Prix : {{product.Price}} $</p>
+                
+                            <p class="descParagraph" >
+                                Description du produit : {{product.Description}}
+                            </p>
+                        </div>
+                            
+                        <div class="BasketContainer">
+                            <p> Ajouter au panier !</p>
+                            <button class="BasketButton" (click)="AddToBasket()" [@enterAnimation] > Ajouter au panier ! </button>
+                        </div>
+        </div>
+
+
+
+</div>
+
+
 
 

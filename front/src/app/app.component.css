@@ -3,8 +3,6 @@ div.NaviguationBar{
     background-color: rgb(55, 126, 220);
     padding: 2px;
     height: 70px;
-    position: relative;
-    z-index:2;
 }
 
 
@@ -26,9 +24,8 @@ button.searchButtonStyle:hover{
 
 button.searchButtonStyle:active{
     vertical-align:middle;
-     height: 36px;
-      background-color:
-      rgb(75, 136, 216);
+    height: 36px;
+    background-color: rgb(75, 136, 216);
 }
 
 
@@ -54,8 +51,9 @@ button.action_button_sub_title_style:hover{
 }
 
 button.action_button_sub_title_style:active{
-    border-bottom-color: rgb(126, 169, 212);
+    border-bottom-color: rgb(189, 200, 213);
     border-style: solid;
     border-radius: 0%;
-    border-bottom-width: 5px;
+    border-bottom-width: 4px;
+    transition: border-bottom-width 0.1s;
 }

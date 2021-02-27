@@ -1,0 +1,3 @@
+INSERT INTO public."Products"("Price", "Name", "Category", "Description") VALUES ('1505.99', 'Asus ROG', 'Informatique', 'c chere mais c pas mal');
+INSERT INTO public."Products"("Price", "Name", "Category", "Description") VALUES ('666.99', 'PQ', 'Informatique', 'Pas trop mal');
+INSERT INTO public."Products"("Price", "Name", "Category", "Description") VALUES ('55.99', 'Ensemble souris/clavier', 'Informatique', 'indispensable');

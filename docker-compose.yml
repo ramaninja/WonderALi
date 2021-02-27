@@ -2,30 +2,60 @@ version:  '3'
 
 services:
 
-# create DATABASE SERVICE
-  pg-service:
+# create BASKET DATABASE SERVICE
+  basket-pg-service:
     image: "postgres:13.1-alpine"
-    container_name: pg-service
+    container_name: basket-pg-service
     volumes: 
-      - ./database_volume:/var/lib/postgresql/data
-      - ./database/script:/docker-entrypoint-initdb.d
+      - ./volume/basket:/var/lib/postgresql/data
+      - ./database/script/basket:/docker-entrypoint-initdb.d
     ports: 
-      - 5432:5432
+      - 5431:5432
+    environment: 
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+# create USERS DATABASE SERVICE
+  users-pg-service:
+    image: "postgres:13.1-alpine"
+    container_name: users-pg-service
+    volumes: 
+      - ./volume/users:/var/lib/postgresql/data
+      - ./database/script/users:/docker-entrypoint-initdb.d
+    ports: 
+      - 5433:5432
+    environment: 
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+# create PRODUCTS DATABASE SERVICE
+  products-pg-service:
+    image: "postgres:13.1-alpine"
+    container_name: products-pg-service
+    volumes: 
+      - ./volume/products:/var/lib/postgresql/data
+      - ./database/script/products:/docker-entrypoint-initdb.d
+    ports: 
+      - 5434:5432
     environment: 
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
 # create AUTHENTIFICATION SERVICE
-  # authent-service:
-  #   build: ./back-end
-  #   container_name: authent-service
-  #   volumes:
-  #     - ./back-end:/usr/src/app
-  #   ports:
-  #     - 5001:80
-  #   depends_on: 
-  #     - pg-service
+  authent-service:
+    build: ./back/Authentication
+    container_name: authent-service
+    volumes:
+      - ./back/Authentication:/usr/src/app
+    ports:
+      - 5001:80
+    depends_on: 
+      - basket-pg-service
+      - users-pg-service
+      - products-pg-service
 
 # create BASKET SERVICE
   basket-service:
@@ -36,29 +66,35 @@ services:
     ports:
       - 5002:80
     depends_on: 
-      - pg-service
+      - basket-pg-service
+      - users-pg-service
+      - products-pg-service
 
 # create PRODUCT SERVICE
   products-service:
-    build: ./back/Products
+    build: ./back/Product
     container_name: products-service
     volumes:
-      - ./back/Products:/usr/src/app
+      - ./back/Product:/usr/src/app
     ports:
       - 5003:80
     depends_on: 
-      - pg-service
+      - basket-pg-service
+      - users-pg-service
+      - products-pg-service
 
 # create SEARCH SERVICE
-  # search-service:
-  #   build: ./back/Search
-  #   container_name: search-service
-  #   volumes:
-  #     - ./back/Search:/usr/src/app
-  #   ports:
-  #     - 5004:80
-  #   depends_on: 
-  #     - pg-service
+  search-service:
+    build: ./back/Search
+    container_name: search-service
+    volumes:
+      - ./back/Search:/usr/src/app
+    ports:
+      - 5004:80
+    depends_on: 
+      - basket-pg-service
+      - users-pg-service
+      - products-pg-service
 
 # create FRONT SERVICE
   front-service:
@@ -71,4 +107,6 @@ services:
     command: >
       bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
     depends_on: 
-      - pg-service
+      - basket-pg-service
+      - users-pg-service
+      - products-pg-service

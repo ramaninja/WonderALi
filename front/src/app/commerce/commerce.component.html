@@ -5,10 +5,11 @@
   </div>  
   <app-preview-article-card
     *ngFor="let item of List"
-    [Id]=item.Id
+    [Id]=item.Product_Id
     [Name]=item.Name
     [Price]=item.Price
     [Description]=item.Description
+    (articleClicked)='SendIdToParent($event)'
     >
   </app-preview-article-card>
 </div>

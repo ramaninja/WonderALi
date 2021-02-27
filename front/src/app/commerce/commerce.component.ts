@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Product } from '../Model/product';
 
 @Component({
@@ -9,9 +10,15 @@ import { Product } from '../Model/product';
 export class CommerceComponent implements OnInit {
    
   @Input() public List:Product[] = [];
-
+  @Output('articleClicked') articleClicked =new EventEmitter<number>();
 
   ngOnInit(): void {
+
   }
 
+  SendIdToParent(productId: number)
+  {
+    const id = productId;
+    this.articleClicked.emit(id)
+  }
 }

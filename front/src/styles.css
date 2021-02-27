@@ -46,12 +46,13 @@ img {
  
 div.preview_card_style {
    padding: 2px;
-   background-color: rgb(245, 245, 245); 
+   background-color: rgb(255, 255, 255); 
    height: 180px;
    width: 200px;
    margin: 5px;
-   border-radius: 5px;
+   border-radius: 0px;
    display: inline-block;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
 }
 
 div.preview_card_style:hover {
@@ -66,8 +67,7 @@ div.ContentPresenter{
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 0 auto;
     border-color: black;
     border-width: 1px;
     background-color: rgb(255, 254, 254);
@@ -97,18 +97,15 @@ button.action_button_style:hover{
 div.BackgroundContainer {
     background-color: whitesmoke;
     padding: 5dp;
+    align-items: center;
+    align-content: center;
 }
 
-div.InvisibleBackgroundContainer{
-    position: absolute;
-    z-index:0;
-    padding-left: 0%;
-    padding-right: 0%;
-    background-color: transparent;
-    background-position: center; 
-    background-repeat: no-repeat; 
-    height: 100%; 
-    width: 100%;
-    background-size: cover;
-}
 
+div.ContentBackgroundContainer {
+    background-color: whitesmoke;
+    padding: 5dp;
+    width: 80%;
+    max-width: 1400px;
+    margin: 0 auto;
+}

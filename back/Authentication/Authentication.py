@@ -1,30 +1,22 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, g
 import psycopg2
 
-app = Flask(__name__)
+# gestion de la connexion à la BDD
+# voir : https://flask.palletsprojects.com/en/0.12.x/tutorial/dbcon/
+def get_db():
+    if not hasattr(g, "dbConn"):
+        g.dbConn = psycopg2.connect(
+            host="users-pg-service",
+            database="postgres",
+            user="postgres",
+            password="postgres")
 
-def recup(user):
-    conn = psycopg2.connect(
-        host="localhost",
-        database="Products",
-        user="user",
-        password="user")
-    print("Connection Established")
-    cur = conn.cursor()
-    cur.execute('SELECT * FROM public."Users" ORDER BY "User_Id" ASC')
-    rows = cur.fetchall()
-    for row in rows:
-        print(row[0], row[1])
-    return rows
+    return g.dbConn
 
-def compare(user, password): 
-    db_row = recup('Marcel')
-    for row in db_row:
-        if(row[2] == password):
-            print("C'est le bon mot de passe")
-        else:
-            print("Pas le bon mot de passe")
-
-
-compare('Marcel', 'password')
+def auth(username, password):
+    conn = get_db()
     
+    with conn.cursor() as cur :
+        cur.execute('SELECT * FROM public."Users" WHERE LOWER("Name")=\'' + username.lower() + '\' AND "Password"=\'' + password + "'")
+        rows = cur.fetchall()
+        return str(len(rows) > 0)

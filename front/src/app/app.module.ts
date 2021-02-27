@@ -6,6 +6,7 @@ import { PreviewArticleCardComponent } from './preview-article-card/preview-arti
 import { CommerceComponent } from './commerce/commerce.component';
 import { CompteComponent } from './compte/compte.component';
 import { DescriptifComponent } from './descriptif/descriptif.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DescriptifComponent } from './descriptif/descriptif.component';
     DescriptifComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule
   ],

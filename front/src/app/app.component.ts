@@ -1,57 +1,148 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, DebugElement, EventEmitter, Output } from '@angular/core';
+import { ProductService } from './DAO/ProductService';
+import { flag } from './Model/flag';
 import { Product } from './Model/product';
+
+enum formsEnum { Commerce, Account, Description, Basket };
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
   
   title = 'App';
-  IsInAccount:boolean = false;
-  
-  IsDescription:boolean =false;
+
+  IsAccountOpen:flag = new flag(false);  
+  IsDescriptionOpen:flag =new flag(false);  
+  IsCommerceOpen:flag = new flag(false);  
+  IsBaketOpen:flag = new flag(false); 
+
+
+  Forms:Map<formsEnum,flag> = new Map<formsEnum,flag>();
 
   public FilterText:string="";
   public List:Product[];
  
-  constructor() {
-    this.List = [];
-  }
+  public currentProduct:Product;
+
+  // ajoute le service product à app-component. (tous les composants fils y ont accès).
+  constructor(public productService:ProductService) {
+      
+      this.List = [];
+      this.Forms =  new Map();
+      
+      this.currentProduct = new Product("unamed",0,0,"desciption");
+
+      this.Forms.set(formsEnum.Commerce,this.IsCommerceOpen);
+      this.Forms.set(formsEnum.Account,this.IsAccountOpen);
+      this.Forms.set(formsEnum.Description,this.IsDescriptionOpen);
+    }
 
   OuvrirCompte():void {
     console.log("Ouvrir la vue compte");
-    this.IsInAccount = true;
-    this.IsDescription = false;
+    this.ChangeForm(formsEnum.Account)
   }
 
   OuvrirPanier():void {
-    this.IsInAccount = false;
-    this.IsDescription = true;
     console.log("Ouvrir le panier");
   }
 
-  DoSearch():void {
-    this.IsInAccount = false; // todo faire avec un méthode qui toggle bien tous booleans etc..
-    this.IsDescription = false;
+  // méthode pour changer de form.
+  ChangeForm(form:formsEnum):void
+  {
+    let list = this.Forms.keys();
+    
+    for (let formName of list) {
+      if(form == formName)
+      {
+        this.Forms.get(form)!.state = true;
+      }
+      else
+      {
+        this.Forms.get(formName)!.state = false;
+      }
+   }
+  }
+
+  DoSearch():void {    
+    this.ChangeForm(formsEnum.Commerce)
+  
+    console.log("Commerce open ? " + this.IsCommerceOpen.state);
+
+    // this.IsAccountOpen = false; // todo faire avec une méthode qui toggle bien tous booleans etc..
+    // this.IsDescriptionOpen = false;
 
     console.log("FilterText : " + this.FilterText);
-    this.Search(this.FilterText);
-    let i:number = 0;
-    while(i<25){
-      // console.log("lancer la recherche");
-      this.List.push(new Product("XboxSX",550,i,"Console de salon"));
-      i++;
+    if( this.FilterText != "" &&  this.FilterText != "xbox"){ // enlever xbox (c'est pour la démo)
+      this.Search(this.FilterText);
+      let i:number = 0;
+    }
+
+    let i = 0;
+
+    // pour la démo
+    if( this.FilterText == "xbox"){
+      while(i<25){
+        // console.log("lancer la recherche");
+        this.List.push(new Product("XboxSX",550,i,
+        "Access your favorite entertainment through apps like YouTube, Netflix, and more Enjoy over 100 games right out of the box with a 1 month Xbox Game Pass trial"
+        + "Watch 4K Blu-ray movies and stream 4K video on Netflix, Amazon, Hulu, Microsoft Movies & TV, and more"
+        + "Play with friends and family near and far—sitting together on the sofa or around the world on Xbox Live, the fastest, most reliable gaming network"
+        + "Xbox One games and accessories work together"));
+        i++;
+      }
     }
   }
 
-  OpenDescription(event: Event)
+  // fonction interne qui cherche le produit parmis sa propre liste.
+  GetProduct(id:number ):Product 
   {
-      console.log("Id de l'article selectionné : " + event);
+    for( let product of this.List) {
+        if(product.Product_Id == id){
+          return product;
+        }
+    }
+    return new Product("unamed",0,0,"Description");
+
   }
 
-  Search(tag:string):void {
-    console.log("tag :" + tag); 
+  OpenDescription(productId: number)
+  {
+      this.currentProduct = this.GetProduct(productId);
+      // console.log(this.currentProduct.Id);
+      this.ChangeForm(formsEnum.Description)
+  }
+
+  // appelle le service product
+  Search(name:string):void {
+
+    this.ChangeForm(formsEnum.Commerce)
+
+    console.log("produit recherché :" + name);
+
+    this.List = [] // on rince la liste
+
+    this.productService.getProductsByName(name).forEach((product:Product) => {
+      this.List.push(product);
+    });
+  }
+
+
+  // appelle le service product
+  SearchTag(tag:string):void{
+
+    this.ChangeForm(formsEnum.Commerce)
+
+    this.List = [] // on rince la liste
+
+    this.productService.getProductsByCategory(tag).forEach((product:Product) => {
+      this.List.push(product);
+    });
   }
 }
