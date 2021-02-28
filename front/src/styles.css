@@ -47,8 +47,8 @@ img {
 div.preview_card_style {
    padding: 2px;
    background-color: rgb(255, 255, 255); 
-   height: 180px;
-   width: 200px;
+   height: 260px;
+   width: 350px;
    margin: 5px;
    border-radius: 0px;
    display: inline-block;
@@ -133,7 +133,7 @@ button.deleteButton:active{
 }
 
 
-button.PossitiveButton{
+button.PositiveButton{
     background-color: rgb(45, 195, 45);
     color: white;
     z-index: 20;
@@ -145,10 +145,10 @@ button.PossitiveButton{
     vertical-align: center;
 }
 
-button.PossitiveButton:hover{
+button.PositiveButton:hover{
     background-color: rgb(83, 209, 83);
 }
 
-button.PossitiveButton:active{
+button.PositiveButton:active{
     background-color: rgb(101, 223, 101);
 }

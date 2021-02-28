@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Model/product';
 
@@ -12,12 +12,14 @@ export class PreviewArticleBasketComponent implements OnInit {
   constructor() { }
   
   @Input() public product:Product = new Product("unamed",0,0,"un produit");
+  @Output('DeleteFromBasket') deleteButtonClicked =new EventEmitter<number>();
 
   ngOnInit(): void {
   }
 
-  DeleteFromBasket():void {
-    console.log("Utiliser l'api basket et faire un delete");
-    // product.Product_Id pour l'id
+  DeleteFromBasket():void
+  {
+    const id = this.product.Product_Id;
+    this.deleteButtonClicked.emit(id)
   }
 }

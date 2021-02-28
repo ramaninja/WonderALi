@@ -18,9 +18,10 @@ export class ProductService {
     
     httpHeader = {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      }  
+          'Content-Type': 'application/json',
+        })}
+    
+      
 
     constructor(private httpClient: HttpClient) { }
 
@@ -42,7 +43,7 @@ export class ProductService {
 
       // pas sûr
       getSingleProduct(id:string): Observable<Product> {
-        return this.httpClient.get<Product>(this.endpoint + '/api/product/?id=' + id)
+        return this.httpClient.get<Product>(this.endpoint + '/api/product?id=' + id)
         .pipe(
           retry(1),
           catchError(this.processError)

@@ -1,6 +1,9 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, DebugElement, EventEmitter, Output } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BasketService } from './DAO/BasketService';
 import { ProductService } from './DAO/ProductService';
+import { Basket } from './Model/basket';
 import { flag } from './Model/flag';
 import { Product } from './Model/product';
 
@@ -31,8 +34,11 @@ export class AppComponent {
  
   public currentProduct:Product;
 
+  public userId:number = 1; // TODO Une fois le login fait, setter le vrai userId
+
+
   // ajoute le service product à app-component. (tous les composants fils y ont accès).
-  constructor(public productService:ProductService) {
+  constructor(public productService:ProductService, public basketService:BasketService) {
       
       this.List = [];
       this.Forms =  new Map();
@@ -57,6 +63,27 @@ export class AppComponent {
   OuvrirPanier():void {
     console.log("Ouvrir le panier");
     this.ChangeForm(formsEnum.Basket);
+    
+    this.List = []
+    let BasketList = []
+    this.basketService.getBasket(this.userId.toString()).subscribe((baskets: {}) => {
+      console.log(baskets)
+      BasketList = baskets as []
+      BasketList.forEach((abasket:{}) => {
+        let basket:Basket = abasket as Basket
+        console.log((basket.Product_Id).toString())
+        this.productService.getSingleProduct((basket.Product_Id).toString()).subscribe((res:{})=>{
+          
+          let prod:Product;
+          let args : string[] = (res).toString().split(",") // Limitation s'il y a un ',' dans nos objets... tout se casse (solution temporaire)
+          console.log("prod " + args)
+          prod = new Product(args[2], Number(args[1]),Number(args[0]),args[3],args[4])
+
+          this.List.push(prod)
+        })
+      })
+    }) 
+
     console.log(this.List.length);
   }
 
@@ -113,7 +140,6 @@ export class AppComponent {
         }
     }
     return new Product("unamed",0,0,"Description");
-
   }
 
   OpenDescription(productId: number)
@@ -132,9 +158,9 @@ export class AppComponent {
 
     this.List = [] // on rince la liste
 
-    this.productService.getProductsByName(name).forEach((product:Product) => {
-      this.List.push(product);
-    });
+    this.productService.getProductsByName(name).subscribe((products: {}) => {
+      this.List = products as Product[];
+    })  
   }
 
 
@@ -144,9 +170,31 @@ export class AppComponent {
     this.ChangeForm(formsEnum.Commerce)
 
     this.List = [] // on rince la liste
+   
+   
+    this.productService.getProductsByCategory(tag).subscribe((products: {}) => {
+        this.List = products as Product[];
+      })  
+  }
 
-    this.productService.getProductsByCategory(tag).forEach((product:Product) => {
-      this.List.push(product);
-    });
+  Buy():void{
+    this.List = []
+    this.basketService.clearUserBasket(this.userId.toString())    
+    console.log("Basket empty now")
+    // Todo faire un call pour clean l'api
+  }
+
+  DeleteProduct(id:number ):void 
+  {
+    /* Côté vu */
+    let newList: Product[] = [];
+    for( let product of this.List) {
+        if(product.Product_Id != id){
+          newList.push(product)
+        }
+    }
+    this.List = newList;
+
+    // todo faire un call a l'api
   }
 }
